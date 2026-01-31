@@ -31,6 +31,7 @@ import { ShowSchedules } from "@/components/dashboard/application/schedules/show
 import { UpdateApplication } from "@/components/dashboard/application/update-application";
 import { ShowVolumeBackups } from "@/components/dashboard/application/volume-backups/show-volume-backups";
 import { DeleteService } from "@/components/dashboard/compose/delete-service";
+import { ShowFileManager } from "@/components/dashboard/file-manager/show-file-manager";
 import { ContainerFreeMonitoring } from "@/components/dashboard/monitoring/free/container/show-free-container-monitoring";
 import { ContainerPaidMonitoring } from "@/components/dashboard/monitoring/paid/container/show-paid-container-monitoring";
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
@@ -64,7 +65,8 @@ type TabState =
 	| "domains"
 	| "monitoring"
 	| "preview-deployments"
-	| "volume-backups";
+	| "volume-backups"
+	| "files";
 
 const Service = (
 	props: InferGetServerSidePropsType<typeof getServerSideProps>,
@@ -248,6 +250,7 @@ const Service = (
 												Volume Backups
 											</TabsTrigger>
 											<TabsTrigger value="logs">Logs</TabsTrigger>
+											<TabsTrigger value="files">Files</TabsTrigger>
 											{((data?.serverId && isCloud) || !data?.server) && (
 												<TabsTrigger value="monitoring">Monitoring</TabsTrigger>
 											)}
@@ -319,6 +322,14 @@ const Service = (
 											<ShowDockerLogs
 												appName={data?.appName || ""}
 												serverId={data?.serverId || ""}
+											/>
+										</div>
+									</TabsContent>
+									<TabsContent value="files">
+										<div className="flex flex-col gap-4 pt-2.5">
+											<ShowFileManager
+												serviceId={applicationId}
+												serviceType="application"
 											/>
 										</div>
 									</TabsContent>

@@ -91,6 +91,7 @@ export * from "./utils/docker/domain";
 export * from "./utils/docker/types";
 export * from "./utils/docker/utils";
 export * from "./utils/filesystem/directory";
+export * from "./utils/filesystem/file-manager";
 export * from "./utils/filesystem/ssh";
 export * from "./utils/gpu-setup";
 export * from "./utils/notifications/build-error";
